@@ -1,7 +1,12 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+const productRoutes = require("./routes/product");
 const port = 3005;
 
+app.use(bodyParser.json());
+
+app.use("/api", productRoutes);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
