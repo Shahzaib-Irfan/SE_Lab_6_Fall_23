@@ -2,9 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 require("./utils/db");
 const app = express();
+const cors = require("cors");
 const productRoutes = require("./routes/productRoutes");
 const port = 3005;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api", productRoutes);

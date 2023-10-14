@@ -9,6 +9,17 @@ async function createProduct(req, res) {
   }
 }
 
+async function getProduct(req, res) {
+  try {
+    const products = await Product.find({});
+    res.send(products);
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ error: err.message });
+  }
+}
+
 module.exports = {
   createProduct,
+  getProduct,
 };
