@@ -2,6 +2,7 @@ const Product = require("../models/product");
 
 async function createProduct(req, res) {
   try {
+    console.log(req.body);
     const product = await Product.create(req.body);
     res.status(201).json(product);
   } catch (err) {
