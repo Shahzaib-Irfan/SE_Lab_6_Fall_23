@@ -22,7 +22,6 @@ async function getProduct(req, res) {
 
 async function updateProduct(req, res) {
   try {
-    console.log("Price: ", req.body["price"], " id: ", req.body["id"]);
     const product = await Product.updateOne(
       { _id: req.body["id"] },
       { price: req.body["price"] }
@@ -35,7 +34,7 @@ async function updateProduct(req, res) {
 
 async function deleteProduct(req, res) {
   try {
-    const product = await Product.deleteOne({ _id: req.query.id });
+    const product = await Product.deleteOne({ _id: req.body.id });
     res.status(201).json(product);
   } catch (err) {
     res.status(500).json({ error: err.message });
