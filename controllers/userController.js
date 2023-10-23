@@ -38,9 +38,14 @@ async function deleteUser(req, res) {
   }
 }
 
+async function adminDasboard(req, res) {
+  res.send("Welcome to Admin Dashboard");
+}
+
 module.exports = {
   createUser,
   getUser,
   updateUser,
   deleteUser,
+  adminDasboard,
 };

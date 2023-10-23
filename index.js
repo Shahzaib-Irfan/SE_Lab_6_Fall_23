@@ -2,6 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 require("./utils/db");
 const app = express();
+const {
+  validateToken,
+  requireRoles,
+} = require("./utils/authorizationMiddleware");
 const cors = require("cors");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -22,6 +26,14 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+app.get(
+  "/shared",
+  validateToken,
+  requireRoles(["Admin", "User"]),
+  (req, res) => {
+    res.json({ message: "Shared endpoint" });
+  }
+);
 app.get("/Welcome", (req, res) => {
   res.send("Shahzaib Irfan Hello g");
 });
